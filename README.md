@@ -4,6 +4,12 @@
 
   - Sign in/ Sign up form
   - Redirect to browse page on login
+  - Form validation
+  - Firebase setup
+  - Hosted on firebase
+  - Authentication setup in firebase
+  - Implemented sign in and sign up
+  - Redux store with user slice
 
 - Browse Page (Only available after authentication)
 
