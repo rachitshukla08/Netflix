@@ -1,17 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import userIcon from "../assets/usericon.jpg";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, removeUser } from "../store/userSlice";
+import { netflixLogo } from "../utils/constants";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const user = useSelector((store) => store.user);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(addUser({ uid, email, displayName, photoURL }));
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+
+    return () => {
+      unsubscribe();
+      console.log("unsubbed");
+    };
+  }, []);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
-        navigate("/");
+        console.log("Signed out");
       })
       .catch((error) => {
         console.log(error);
@@ -19,13 +43,10 @@ export const Header = () => {
         navigate("/error");
       });
   };
+
   return (
     <div className="flex flex-row justify-between items-center">
-      <img
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt="logo"
-        className="w-48"
-      />
+      <img src={netflixLogo} alt="logo" className="w-48" />
       {user && (
         <div className="mr-4 flex items-center gap-2">
           <img src={user?.photoURL} alt="user-icon" className="max-w-8 " />

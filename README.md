@@ -10,6 +10,8 @@
   - Authentication setup in firebase
   - Implemented sign in and sign up
   - Redux store with user slice
+  - Prevent user to go to browse when not logged
+  - Prevent user to go to login page when logged in
 
 - Browse Page (Only available after authentication)
 

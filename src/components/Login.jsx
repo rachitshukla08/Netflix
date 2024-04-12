@@ -7,9 +7,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice";
+import { defaultUserAvatar } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -17,7 +17,6 @@ const Login = () => {
   const email = useRef();
   const password = useRef();
   const name = useRef();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const toggleForm = () => {
@@ -34,53 +33,46 @@ const Login = () => {
 
     if (!isSignInForm) {
       // Sign up user
-      createUserWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value
-      )
-        .then((userCredential) => {
-          // Signed up
-          const user = userCredential.user;
-          updateProfile(auth.currentUser, {
-            displayName: name.current.value,
-            photoURL:
-              "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png",
-          })
-            .then(() => {
-              const { uid, email, displayName, photoURL } = auth.currentUser;
-              dispatch(addUser({ uid, email, displayName, photoURL }));
-              navigate("/browse");
-            })
-            .catch((error) => {
-              setErrorMessage(error.message);
-            });
-          console.log(userCredential);
-          console.log(user);
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMsg = error.message;
-          console.log(errorCode, errorMsg);
-          setErrorMessage(errorCode + ": " + errorMsg);
-        });
+      signUpUser();
     } else {
-      signInWithEmailAndPassword(
+      signInUser();
+    }
+  };
+
+  const signUpUser = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         email.current.value,
         password.current.value
-      )
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMsg = error.message;
-          setErrorMessage(errorCode + ": " + errorMsg);
-        });
+      );
+      await updateProfile(auth.currentUser, {
+        displayName: name.current.value,
+        photoURL: `${defaultUserAvatar}`,
+      });
+      const { uid, email: emailId, displayName, photoURL } = auth.currentUser;
+      dispatch(addUser({ uid, email: emailId, displayName, photoURL }));
+    } catch (error) {
+      console.log(error);
+      const errorCode = error.code;
+      const errorMsg = error.message;
+      setErrorMessage(errorCode + ": " + errorMsg);
+    }
+  };
+
+  const signInUser = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      );
+      const user = userCredential.user;
+      console.log(user);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMsg = error.message;
+      setErrorMessage(errorCode + ": " + errorMsg);
     }
   };
 
