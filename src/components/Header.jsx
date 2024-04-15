@@ -45,10 +45,10 @@ export const Header = () => {
   };
 
   return (
-    <div className="flex flex-row justify-between items-center">
+    <div className="flex flex-row justify-between items-center relative">
       <img src={netflixLogo} alt="logo" className="w-48" />
       {user && (
-        <div className="mr-4 flex items-center gap-2">
+        <div className="mr-4 flex items-center gap-2 text-white">
           <img src={user?.photoURL} alt="user-icon" className="max-w-8 " />
           <span>{user?.displayName}</span>
           <button onClick={handleSignOut} className="text-xs">

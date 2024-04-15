@@ -1,10 +1,17 @@
 import React from "react";
 import { Header } from "./Header";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
+  useNowPlayingMovies();
+
   return (
-    <div>
+    <div className="bg-gradient-to-r from-black/50 to-black/50">
       <Header />
+      <MainContainer />
+      <SecondaryContainer />
     </div>
   );
 };

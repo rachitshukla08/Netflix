@@ -78,8 +78,8 @@ const Login = () => {
 
   return (
     <div className="custom-bg-login h-lvh">
+      <Header />
       <div className="container max-w-7xl m-auto">
-        <Header />
         <div className="form-container max-w-md m-auto py-2">
           <form
             onSubmit={(e) => {

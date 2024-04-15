@@ -12,6 +12,7 @@
   - Redux store with user slice
   - Prevent user to go to browse when not logged
   - Prevent user to go to login page when logged in
+  - Registered for TMDB API and fetch data from their API
 
 - Browse Page (Only available after authentication)
 
