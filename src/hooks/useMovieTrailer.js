@@ -8,18 +8,16 @@ const useMovieTrailer = (movieId) => {
   const getVideo = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/" +
-        "976573" +
+        movieId +
         "/videos?language=en-US",
       API_OPTIONS
     );
     const json = await data.json();
-    console.log(json);
 
     const trailerVideos = json.results.filter(
       (video) => video.type.toLowerCase() === "trailer"
     );
     const trailer = trailerVideos.length ? trailerVideos[0] : json.results[0];
-    console.log(trailer);
     dispatch(addTrailerVideo(trailer));
   };
 

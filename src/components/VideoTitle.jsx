@@ -2,11 +2,11 @@ import React from "react";
 
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="ml-[3%] text-white">
-      <h1 className="text-5xl font-bold">{title}</h1>
-      <p className="max-w-96 mt-6 text-sm">{overview}</p>
-      <div className="flex flex-row max-w-lg gap-10 mt-6">
-        <button className="bg-white text-black px-4 py-2 rounded flex flex-row items-center gap-2 hover:bg-neutral-300/90 text-xl">
+    <div className="mx-16 mb-28 text-white font-medium">
+      <h1 className="text-4xl font-bold max-w-lg">{title}</h1>
+      <p className="max-w-96 mt-6 text-sm tracking-wider">{overview}</p>
+      <div className="flex flex-row max-w-lg gap-5 mt-6">
+        <button className="bg-white text-black px-8 py-2 rounded flex flex-row items-center gap-2 hover:bg-neutral-300/90 text-xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -17,7 +17,7 @@ const VideoTitle = ({ title, overview }) => {
           </svg>
           Play
         </button>
-        <button className="px-4 py-2 rounded flex text-nowrap flex-row items-center gap-2 text-white text-xl bg-neutral-700/70 hover:bg-black/60">
+        <button className="px-8 py-2 rounded flex text-nowrap flex-row items-center gap-2 text-white text-xl bg-neutral-700/70 hover:bg-black/60">
           <svg
             clipRule="evenodd"
             fillRule="evenodd"

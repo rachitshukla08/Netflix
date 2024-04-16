@@ -12,3 +12,23 @@
 html {
   font-family: "Roboto";
 }
+
+*::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background for the track */
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #e50914; /* Black color for the thumb */
+  border-radius: 5px; /* Rounded corners for the thumb */
+}
+
+/* Optional: Style the scrollbar arrows (Firefox only) */
+*::-webkit-scrollbar-button {
+  display: none; /* Hide arrows */
+}

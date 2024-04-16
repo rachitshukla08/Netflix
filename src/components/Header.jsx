@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import userIcon from "../assets/usericon.jpg";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -45,10 +44,10 @@ export const Header = () => {
   };
 
   return (
-    <div className="flex flex-row justify-between items-center relative">
-      <img src={netflixLogo} alt="logo" className="w-48" />
+    <div className="flex flex-row justify-between items-center relative bg-gradient-to-r from-black ">
+      <img src={netflixLogo} alt="logo" className="w-48 ml-[3%]" />
       {user && (
-        <div className="mr-4 flex items-center gap-2 text-white">
+        <div className="mr-[3%] flex items-center gap-2 text-white">
           <img src={user?.photoURL} alt="user-icon" className="max-w-8 " />
           <span>{user?.displayName}</span>
           <button onClick={handleSignOut} className="text-xs">
