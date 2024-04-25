@@ -13,4 +13,6 @@ export const API_OPTIONS = {
   },
 };
 
+export const OPENAI_KEY = "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";
+
 export const imgCDN = "https://image.tmdb.org/t/p/w300/";
