@@ -1,12 +1,56 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const VideoTitle = ({ title, overview }) => {
+  const [overviewClass, setOverviewClass] = useState(
+    "sm:block hidden max-w-96 mt-6 text-sm tracking-wider transition-all"
+  );
+  const [titleClass, setTitleClass] = useState({
+    ["font-size"]: "2.25rem",
+    ["font-weight"]: "700",
+    ["max-width"]: "32rem",
+  });
+  const overviewNode = useRef();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // setShowOverview(false);
+      setOverviewClass(
+        "sm:block max-w-96 mt-6 text-sm tracking-wider translate-y-40 opacity-0 overflow-hidden transition-all duration-[0.8s]"
+      );
+      // setTitleClass(
+      //   (prev) =>
+      //     prev +
+      //     " text-3xl transition-all translate-y-[" +
+      //     overviewNode.current.clientHeight +
+      //     "rem]"
+      // );
+      setTitleClass({
+        ...titleClass,
+        transform: `translateY(${overviewNode.current.clientHeight}px)`,
+        ["font-size"]: "1.8rem",
+        transition: "all 0.8s ease",
+      });
+    }, 10000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  // const getOverviewClass = () => {
+  //   let overviewClass =
+  //     "sm:block hidden max-w-96 mt-6 text-sm tracking-wider transition-all";
+  //   if (!showOverview) overviewClass += "hidden";
+  //   return overviewClass;
+  // };
+
   return (
     <div className="mx-16 mb-28 text-white font-medium">
-      <h1 className="text-4xl font-bold max-w-lg">{title}</h1>
-      <p className="max-w-96 mt-6 text-sm tracking-wider">{overview}</p>
-      <div className="flex flex-row max-w-lg gap-5 mt-6">
-        <button className="bg-white text-black px-8 py-2 rounded flex flex-row items-center gap-2 hover:bg-neutral-300/90 text-xl">
+      <h1 style={titleClass}>{title}</h1>
+      <p ref={overviewNode} className={overviewClass}>
+        {overview}
+      </p>
+      <div className="flex sm:flex-row flex-col max-w-lg gap-5 mt-6">
+        <button className="bg-white text-black px-8 py-2 rounded flex flex-row items-center gap-2 hover:bg-neutral-300/90 text-xl sm:max-w-fit w-44 justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -17,7 +61,7 @@ const VideoTitle = ({ title, overview }) => {
           </svg>
           Play
         </button>
-        <button className="px-8 py-2 rounded flex text-nowrap flex-row items-center gap-2 text-white text-xl bg-neutral-700/70 hover:bg-black/60">
+        <button className="px-8 py-2 rounded flex text-nowrap flex-row items-center gap-2 text-white text-xl bg-neutral-700/70 hover:bg-black/60 sm:max-w-fit w-44 justify-center">
           <svg
             clipRule="evenodd"
             fillRule="evenodd"

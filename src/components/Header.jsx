@@ -49,7 +49,7 @@ export const Header = () => {
   };
 
   return (
-    <div className="flex flex-row justify-between items-center relative bg-gradient-to-r from-black ">
+    <div className="flex sm:flex-row flex-col justify-between items-center relative bg-gradient-to-r from-black ">
       <img src={netflixLogo} alt="logo" className="w-48 ml-[3%]" />
       {user && (
         <div className="flex text-nowrap gap-8 mr-8">
@@ -73,7 +73,7 @@ export const Header = () => {
                 fill="white"
               />
             </svg>
-            GPT Search
+            Search
           </button>
           <div className="mr-[3%] flex items-center gap-2 text-white">
             <img src={user?.photoURL} alt="user-icon" className="max-w-8 " />
