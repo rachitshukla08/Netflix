@@ -23,7 +23,6 @@ const GPTSearchBar = () => {
       // });
       const searchResults = await fetchMovieFromTMDB(searchText.current.value);
       dispatch(addSearchResults(searchResults));
-      console.log(searchResults);
     } catch (e) {
       console.log(e);
     }

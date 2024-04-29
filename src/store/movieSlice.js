@@ -26,6 +26,10 @@ const movieSlice = createSlice({
     addTrailerVideo: (state, action) => {
       state.trailerVideo = action.payload;
     },
+    addDynamicStateMovie: (state, action) => {
+      const { convertedMovieType, movies } = action.payload;
+      state[convertedMovieType] = movies;
+    },
     toggleShowMiniPlayer: (state) => {
       state.showMiniPlayer = !state.showMiniPlayer;
     },
@@ -39,5 +43,6 @@ export const {
   addPopularMovies,
   addTopRatedMovies,
   addUpcomingMovies,
+  addDynamicStateMovie,
   toggleShowMiniPlayer,
 } = movieSlice.actions;

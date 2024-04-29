@@ -11,7 +11,7 @@ const MainContainer = () => {
   if (!trailerMovie) return;
   const { original_title, overview, id } = trailerMovie;
   return (
-    <div className="h-[100vh] min-h-[768px] flex flex-col justify-center bg-gradient-to-r from-black">
+    <div className="h-[100vh] min-h-[768px] flex flex-col justify-center ">
       <VideoTitle title={original_title} overview={overview} />
       <VideoBackground movieId={id} />
     </div>

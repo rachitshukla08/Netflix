@@ -5,9 +5,9 @@ const VideoTitle = ({ title, overview }) => {
     "sm:block hidden max-w-96 mt-6 text-sm tracking-wider transition-all"
   );
   const [titleClass, setTitleClass] = useState({
-    ["font-size"]: "2.25rem",
-    ["font-weight"]: "700",
-    ["max-width"]: "32rem",
+    ["fontSize"]: "2.25rem",
+    ["fontWeight"]: "700",
+    ["maxWidth"]: "32rem",
   });
   const overviewNode = useRef();
   useEffect(() => {
@@ -26,7 +26,7 @@ const VideoTitle = ({ title, overview }) => {
       setTitleClass({
         ...titleClass,
         transform: `translateY(${overviewNode.current.clientHeight}px)`,
-        ["font-size"]: "1.8rem",
+        ["fontSize"]: "1.8rem",
         transition: "all 0.8s ease",
       });
     }, 10000);

@@ -16,3 +16,5 @@ export const API_OPTIONS = {
 export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
 
 export const imgCDN = "https://image.tmdb.org/t/p/w300/";
+
+export const MOVIE_TYPES = ["now_playing", "popular", "top_rated", "upcoming"];
