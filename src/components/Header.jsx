@@ -36,6 +36,7 @@ export const Header = () => {
     signOut(auth)
       .then(() => {
         console.log("Signed out");
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
@@ -83,13 +84,11 @@ export const Header = () => {
             Search
           </button>
           <div className="mr-[3%] flex items-center gap-2 text-white">
-            <img src={user?.photoURL} alt="user-icon" className="max-w-8 " />
-            <span>{user?.displayName}</span>
             <button onClick={handleSignOut} className="text-xs">
               Sign out
             </button>
           </div>
-          <DropDown />
+          <DropDown user={user} signOut={handleSignOut} />
         </div>
       )}
     </div>
