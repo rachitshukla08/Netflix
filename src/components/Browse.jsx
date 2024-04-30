@@ -2,7 +2,7 @@ import React from "react";
 import { Header } from "./Header";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
-import GPTSearch from "./GPTSearch";
+import GPTSearch from "./Search/GPTSearch";
 import { useSelector } from "react-redux";
 import useAllMovies from "../hooks/useAllMovies";
 

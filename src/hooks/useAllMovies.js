@@ -12,8 +12,6 @@ const useAllMovies = () => {
     );
     const convertedMovieType = movieTypeToReduxStateConverter(movieType);
     const json = await data.json();
-    console.log(convertedMovieType);
-    console.log(json);
     dispatch(
       addDynamicStateMovie({ convertedMovieType, movies: json.results })
     );

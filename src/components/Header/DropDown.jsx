@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const DropDown = ({ user, signOut }) => {
   const [isDropDownVisible, setIsDropDownVisible] = useState(false);
@@ -7,7 +7,7 @@ const DropDown = ({ user, signOut }) => {
   const hideDropDown = () => {
     const timer = setTimeout(() => {
       setIsDropDownVisible(false);
-    }, 1000);
+    }, 500);
     setDropDownHideTimer(timer);
   };
 

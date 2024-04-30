@@ -1,12 +1,30 @@
-import React, { useRef } from "react";
-import openai from "../utils/openai";
-import { API_OPTIONS } from "../utils/constants";
+import React, { useEffect, useRef, useState } from "react";
+import openai from "../../utils/openai";
+import { API_OPTIONS } from "../../utils/constants";
 import { useDispatch } from "react-redux";
-import { addSearchResults } from "../store/gptSlice";
+import { addSearchResults } from "../../store/gptSlice";
 
-const GPTSearchBar = () => {
-  const searchText = useRef(null);
+const GPTSearchBar = ({ isLoading, setIsLoading }) => {
+  const [searchMovieText, setsearchMovieText] = useState("");
+  // const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const firstRender = useRef(true);
+  let debounceTimer = null;
+
+  useEffect(() => {
+    if (!firstRender.current) {
+      if (searchMovieText.trim() !== "") setIsLoading(true);
+      debounceTimer = setTimeout(() => {
+        handleGPTSearchClick();
+      }, 1500);
+      return () => {
+        console.log(debounceTimer);
+        clearInterval(debounceTimer);
+      };
+    }
+    firstRender.current = false;
+  }, [searchMovieText]);
+
   const handleGPTSearchClick = async () => {
     try {
       // const query =
@@ -21,8 +39,11 @@ const GPTSearchBar = () => {
       // gptMovies.forEach((movie) => {
       //   fetchMovieFromTMDB(movie);
       // });
-      const searchResults = await fetchMovieFromTMDB(searchText.current.value);
-      dispatch(addSearchResults(searchResults));
+      console.log(searchMovieText);
+      const searchResults = await fetchMovieFromTMDB(searchMovieText);
+      console.log(searchResults);
+      dispatch(addSearchResults({ searchMovieText, searchResults }));
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
     }
@@ -48,17 +69,21 @@ const GPTSearchBar = () => {
       <div className="max-w-3xl m-auto">
         <form className="px-16 py-16 flex" onSubmit={(e) => e.preventDefault()}>
           <input
-            ref={searchText}
+            // ref={searchText}
+            onChange={(e) => {
+              setsearchMovieText(e.target.value);
+            }}
+            value={searchMovieText}
             type="text"
-            className="w-full px-8 py-4 bg-gray-100 rounded rounded-r-none"
+            className="w-full px-8 py-4 bg-gray-100 rounded"
             placeholder="What are you feeling like watching today?"
           ></input>
-          <button
+          {/* <button
             onClick={handleGPTSearchClick}
             className="px-6 w-2/6 py-2 bg-red-700 hover:bg-red-800 transition-all text-white font-medium rounded rounded-l-none"
           >
             Search
-          </button>
+          </button> */}
         </form>
       </div>
     </div>

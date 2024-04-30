@@ -41,7 +41,6 @@ html {
   position: absolute;
   right: 0;
   top: calc(100% + 1rem);
-  background-color: #141414;
   padding: 0.25rem 1rem;
   padding-right: 4rem;
   /* box-shadow: 0 2px 5px 0 rgba(255, 255, 255, 0.1); */
@@ -52,6 +51,7 @@ html {
   color: white;
   font-size: 0.8rem;
   border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .dropdown-menu.active {

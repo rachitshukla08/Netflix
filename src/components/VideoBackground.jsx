@@ -9,7 +9,7 @@ const VideoBackground = ({ movieId }) => {
   if (!trailer) return;
 
   return (
-    <div className="absolute -top-16 -z-10 w-[100%] overflow-x-clip bg-gradient-to-r from-black h-svh">
+    <div className="absolute -top-16 -z-10 w-[100%] overflow-x-clip bg-gradient-to-r from-black h-svh shadow-[0_800px_0px_0px_rgba(0,0,0,1)]">
       {/* Added playlist id same as video ID in iframe so that video loops */}
       <div className="relative h-full">
         <iframe
