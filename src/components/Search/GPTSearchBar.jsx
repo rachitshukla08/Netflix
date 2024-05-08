@@ -18,7 +18,6 @@ const GPTSearchBar = ({ isLoading, setIsLoading }) => {
         handleGPTSearchClick();
       }, 1500);
       return () => {
-        console.log(debounceTimer);
         clearInterval(debounceTimer);
       };
     }

@@ -83,11 +83,6 @@ export const Header = () => {
             </svg>
             Search
           </button>
-          <div className="mr-[3%] flex items-center gap-2 text-white">
-            <button onClick={handleSignOut} className="text-xs">
-              Sign out
-            </button>
-          </div>
           <DropDown user={user} signOut={handleSignOut} />
         </div>
       )}
